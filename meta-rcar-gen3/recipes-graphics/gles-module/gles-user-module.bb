@@ -35,7 +35,6 @@ do_install() {
     install -d ${D}/${exec_prefix}
     install -d ${D}/${sysconfdir}/init.d
     install -m 644 ${S}/${sysconfdir}/powervr.ini ${D}/${sysconfdir}
-    install -m 755 ${S}/${sysconfdir}/init.d/rc.pvr ${D}/${sysconfdir}/init.d/
     install -d ${D}/${sysconfdir}/udev/rules.d
     install -m 644 ${S}/${sysconfdir}/udev/rules.d/72-pvr-seat.rules ${D}/${sysconfdir}/udev/rules.d/
     install -d ${D}/${includedir}/EGL
@@ -66,6 +65,10 @@ do_install() {
     if [ ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)} ]; then
         install -d ${D}/${systemd_unitdir}/system/
         install -m 644 ${WORKDIR}/rc.pvr.service ${D}/${systemd_unitdir}/system/
+        install -d ${D}/${exec_prefix}/bin
+        install -m 755 ${S}/${sysconfdir}/init.d/rc.pvr ${D}/${exec_prefix}/bin/
+    else # sysv
+        install -m 755 ${S}/${sysconfdir}/init.d/rc.pvr ${D}/${sysconfdir}/init.d/
     fi
 }
 
@@ -79,6 +82,7 @@ FILES_${PN} = " \
     ${libdir}/* \
     /lib/firmware/rgx.fw \
     /usr/local/bin/* \
+    ${exec_prefix}/bin/* \
 "
 
 FILES_${PN}-dev = " \
