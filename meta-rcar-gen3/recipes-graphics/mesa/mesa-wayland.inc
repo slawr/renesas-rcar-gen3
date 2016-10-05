@@ -22,7 +22,10 @@ do_install_append_rcar-gen3() {
     rm -f ${D}/${libdir}/libEGL.la
     rm -f ${D}/${libdir}/libEGL.so*
     rm -f ${D}/${libdir}/pkgconfig/egl.pc
-    rm -rf ${D}/${includedir}/EGL
+    rm -rf ${D}/${includedir}/EGL/egl.h
+    rm -rf ${D}/${includedir}/EGL/eglext.h
+    rm -rf ${D}/${includedir}/EGL/eglextchromium.h
+    rm -rf ${D}/${includedir}/EGL/eglplatform.h
     rm -rf ${D}/${includedir}/KHR
 
     # install required header for wayland

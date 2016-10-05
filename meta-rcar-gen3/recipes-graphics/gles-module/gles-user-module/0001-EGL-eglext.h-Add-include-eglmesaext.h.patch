@@ -1,0 +1,16 @@
+diff --git a/usr/include/EGL/eglext.h b/usr/include/EGL/eglext.h
+index de119f6..fe31af2 100644
+--- a/usr/include/EGL/eglext.h
++++ b/usr/include/EGL/eglext.h
+@@ -645,6 +645,8 @@ EGLAPI EGLuint64NV EGLAPIENTRY eglGetSystemTimeNV (void);
+ #endif /* KHRONOS_SUPPORT_INT64 */
+ #endif /* EGL_NV_system_time */
+ 
++#include <EGL/eglmesaext.h>
++
+ #ifdef __cplusplus
+ }
+ #endif
+-- 
+1.9.1
+

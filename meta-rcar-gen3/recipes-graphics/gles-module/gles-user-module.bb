@@ -18,6 +18,7 @@ SRC_URI_append = " \
     ${@bb.utils.contains("DISTRO_FEATURES", "wayland", " \
         file://change-shell.patch \
         file://rc.pvr.service \
+        file://0001-EGL-eglext.h-Add-include-eglmesaext.h.patch \
         ", "", d)} \
 "
 
