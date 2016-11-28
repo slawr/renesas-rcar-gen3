@@ -71,6 +71,10 @@ do_install() {
     else # sysv
         install -m 755 ${S}/${sysconfdir}/init.d/rc.pvr ${D}/${sysconfdir}/init.d/
     fi
+
+    cd ${D}/${libdir} && ln -sf libGLESv2.so libGLESv2.so.2
+    cd ${D}/${libdir} && ln -sf libGLESv2.so libGLESv2.so.1
+    cd ${D}/${libdir} && ln -sf libEGL.so libEGL.so.1
 }
 
 PACKAGES = "\
