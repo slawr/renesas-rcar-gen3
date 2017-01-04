@@ -13,6 +13,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 SRC_URI_r8a7795 = 'file://GSX_KM_H3.tar.bz2'
 SRC_URI_r8a7796 = 'file://GSX_KM_M3.tar.bz2'
+SRC_URI_append = " \
+    file://pvrsrvkm.conf"
 S = "${WORKDIR}/rogue_km"
 
 KBUILD_DIR_r8a7795 = "${S}/build/linux/r8a7795_linux"
@@ -36,6 +38,10 @@ module_do_install() {
     install -d ${D}/lib/modules/${KERNEL_VERSION}
     cd ${KBUILD_DIR}
     oe_runmake DISCIMAGE="${D}" install
+    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
+        install -d ${D}${sysconfdir}/modules-load.d
+        install -m 0644 ${WORKDIR}/pvrsrvkm.conf ${D}${sysconfdir}/modules-load.d
+    fi
 }
 
 # Ship the module symbol file to kerenel build dir

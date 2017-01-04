@@ -15,7 +15,7 @@ do_install_append() {
 
     if [ "X${USE_GLES}" = "X1" ]; then
         sed -e "/RequiresMountsFor=\/run/a Wants=rc.pvr.service" \
-            -e "/RequiresMountsFor=\/run/a After=rc.pvr.service" \
+            -e "/RequiresMountsFor=\/run/a After=rc.pvr.service dbus.service multi-user.target" \
             -e "s/\$OPTARGS/--idle-time=0 \$OPTARGS/" \
             -i ${D}${systemd_system_unitdir}/weston.service
     fi
