@@ -102,15 +102,13 @@ FILES_${PN}-dev = " \
     ${libdir}/pkgconfig/* \
 "
 
-PROVIDES = "virtual/libgles2  virtual/egl"
+PROVIDES = "virtual/libgles2"
 RPROVIDES_${PN} += " \
     ${GLES}-user-module \
     libgles2-mesa \
     libgles2-mesa-dev \
     libgles2 \
     libgles2-dev \
-    libegl \
-    libegl1 \
 "
 
 RDEPENDS_${PN} = " \
