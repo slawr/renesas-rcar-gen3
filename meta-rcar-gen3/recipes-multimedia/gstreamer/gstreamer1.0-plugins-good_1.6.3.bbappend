@@ -21,8 +21,6 @@ addtask do_init_submodule after do_unpack before do_patch
 
 do_init_submodule() {
     cd ${S}
-    export https_proxy=${https_proxy}
-    export HTTPS_PROXY=${HTTPS_PROXY}
     git submodule init
     git submodule update
 }
