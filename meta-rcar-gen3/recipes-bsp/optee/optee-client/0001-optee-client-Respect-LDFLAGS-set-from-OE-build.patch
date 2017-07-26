@@ -1,0 +1,57 @@
+From 4ee8c61a0b85cc605993beaa117c46c9cbbca496 Mon Sep 17 00:00:00 2001
+From: Stephen Lawrence <stephen.lawrence@renesas.com>
+Date: Wed, 26 Jul 2017 17:20:22 +0100
+Subject: [PATCH] optee-client: Respect LDFLAGS set from OE build
+
+Backport upstream fix to unify LFLAGS/LDFLAGS variable names.
+
+Fixes:
+ ERROR: optee-client-1.1.0+renesas+gitAUTOINC+db9c64d458-r0 do_package_qa: QA Issue: No GNU_HASH in the elf binary: 'optee-client/1.1.0+renesas+gitAUTOINC+db9c64d458-r0/packages-split/optee-client/usr/bin/tee-supplicant'
+ No GNU_HASH in the elf binary: 'optee-client/1.1.0+renesas+gitAUTOINC+db9c64d458-r0/packages-split/optee-client/usr/lib/libteec.so.1.0' [ldflags]
+ ERROR: optee-client-1.1.0+renesas+gitAUTOINC+db9c64d458-r0 do_package_qa: QA run found fatal errors. Please consider fixing them.
+ ERROR: optee-client-1.1.0+renesas+gitAUTOINC+db9c64d458-r0 do_package_qa: Function failed: do_package_qa
+
+(From meta-linaro rev: a7131d143db3b51a49c88b5293b6aadcce0538d4)
+
+Signed-off-by: Stephen Lawrence <stephen.lawrence@renesas.com>
+---
+ libteec/Makefile        | 2 +-
+ tee-supplicant/Makefile | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/libteec/Makefile b/libteec/Makefile
+index 9a69216..2e6ca8f 100644
+--- a/libteec/Makefile
++++ b/libteec/Makefile
+@@ -28,7 +28,7 @@ TEEC_CFLAGS	:= $(addprefix -I, $(TEEC_INCLUDES)) $(CFLAGS) -D_GNU_SOURCE \
+ 		   -DDEBUGLEVEL_$(CFG_TEE_CLIENT_LOG_LEVEL) \
+ 		   -DBINARY_PREFIX=\"TEEC\"
+ 
+-TEEC_LFLAGS    := -lpthread
++TEEC_LFLAGS    := $(LDFLAGS) -lpthread
+ TEEC_LIBRARY	:= $(OUT_DIR)/$(LIB_MAJ_MIN)
+ 
+ libteec: $(TEEC_LIBRARY)
+diff --git a/tee-supplicant/Makefile b/tee-supplicant/Makefile
+index 4f451f1..16816bb 100644
+--- a/tee-supplicant/Makefile
++++ b/tee-supplicant/Makefile
+@@ -37,13 +37,13 @@ ifeq ($(RPMB_EMU),1)
+ TEES_CFLAGS	+= -DRPMB_EMU=1
+ endif
+ TEES_FILE	:= $(OUT_DIR)/$(PACKAGE_NAME)
+-TEES_LDFLAGS    := -L$(OUT_DIR)/../libteec -lteec
++TEES_LFLAGS    := $(LDFLAGS) -L$(OUT_DIR)/../libteec -lteec
+ 
+ tee-supplicant: $(TEES_FILE)
+ 
+ $(TEES_FILE): $(TEES_OBJS)
+ 	@echo "  LD      $@"
+-	$(VPREFIX)$(CC) -o $@ $+ $(TEES_LDFLAGS)
++	$(VPREFIX)$(CC) -o $@ $+ $(TEES_LFLAGS)
+ 	@echo ""
+ 
+ $(TEES_OBJ_DIR)/%.o: $(TEES_SRC_DIR)/%.c
+-- 
+1.9.1
+

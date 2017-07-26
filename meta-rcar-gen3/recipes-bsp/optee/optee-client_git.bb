@@ -10,6 +10,7 @@ SRCREV = "db9c64d45818d146200297eaaedbd421a8b59e3a"
 
 SRC_URI += " \
     file://optee.service \
+    file://0001-optee-client-Respect-LDFLAGS-set-from-OE-build.patch \
 "
 
 inherit systemd
