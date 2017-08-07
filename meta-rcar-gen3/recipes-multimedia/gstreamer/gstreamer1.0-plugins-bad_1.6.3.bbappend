@@ -6,7 +6,7 @@ SRC_URI += " \
 "
 SRCREV = "9b7c647fb89c137439c2edae5e96c44c8fe6337f"
 
-DEPENDS += "weston"
+DEPENDS += "weston wayland-native"
 
 S = "${WORKDIR}/git"
 
