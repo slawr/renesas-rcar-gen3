@@ -57,3 +57,5 @@ PACKAGES = " \
 FILES_${PN} = " \
     /lib/modules/${KERNEL_VERSION}/extra/qos.ko \
 "
+
+RPROVIDES_${PN} += "${PN}-${KERNEL_VERSION}"

@@ -67,4 +67,7 @@ FILES_${PN} = " \
     /lib/modules/${KERNEL_VERSION}/extra/mmngr.ko \
 "
 
-RPROVIDES_${PN} += "kernel-module-mmngr"
+RPROVIDES_${PN} += " \
+    kernel-module-mmngr \
+    ${PN}-${KERNEL_VERSION} \
+"

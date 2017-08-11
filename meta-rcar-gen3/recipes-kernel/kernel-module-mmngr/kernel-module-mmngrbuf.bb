@@ -49,4 +49,7 @@ FILES_${PN} = " \
     /lib/modules/${KERNEL_VERSION}/extra/mmngrbuf.ko \
 "
 
-RPROVIDES_${PN} += "kernel-module-mmngrbuf"
+RPROVIDES_${PN} += " \
+    kernel-module-mmngrbuf \
+    kernel-module-mmngrbuf-${KERNEL_VERSION} \
+"

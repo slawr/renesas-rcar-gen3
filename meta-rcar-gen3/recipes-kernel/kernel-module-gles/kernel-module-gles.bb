@@ -52,4 +52,8 @@ module_clean_symbol() {
     rm -f ${STAGING_KERNEL_BUILDDIR}/GLES.symvers
 }
 
-RPROVIDES_${PN} += "kernel-module-pvrsrvkm kernel-module-dc-linuxfb"
+RPROVIDES_${PN} += " \
+    ${PN}-${KERNEL_VERSION} \
+    kernel-module-pvrsrvkm \
+    kernel-module-dc-linuxfb \
+"

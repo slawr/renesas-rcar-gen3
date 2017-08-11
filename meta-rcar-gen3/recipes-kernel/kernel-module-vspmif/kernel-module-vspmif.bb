@@ -61,4 +61,8 @@ FILES_${PN} = " \
     /lib/modules/${KERNEL_VERSION}/extra/vspm_if.ko \
 "
 
-RPROVIDES_${PN} += "kernel-module-vspmif kernel-module-vspm-if"
+RPROVIDES_${PN} += " \
+    kernel-module-vspm-if-${KERNEL_VERSION} \
+    kernel-module-vspmif \
+    kernel-module-vspm-if \
+"

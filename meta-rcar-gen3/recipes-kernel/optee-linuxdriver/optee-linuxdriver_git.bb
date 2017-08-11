@@ -70,6 +70,10 @@ FILES_${PN}-armtz = " \
     /lib/modules/${KERNEL_VERSION}/extra/optee_armtz.ko \
 "
 
-RPROVIDES_${PN} += "optee-linuxdriver"
-RPROVIDES_${PN} += "kernel-module-optee"
-RPROVIDES_${PN} += "kernel-module-optee-armtz"
+RPROVIDES_${PN} += " \
+    optee-linuxdriver \
+    kernel-module-optee \
+    kernel-module-optee-armtz \
+    kernel-module-optee-${KERNEL_VERSION} \
+    kernel-module-optee-armtz-${KERNEL_VERSION} \
+"
