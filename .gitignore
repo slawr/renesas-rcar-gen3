@@ -1,0 +1,5 @@
+meta-rcar-gen3/recipes-graphics/gles-module/gles-user-module/r8a7795_linux_gsx_binaries_gles3.tar.bz2
+meta-rcar-gen3/recipes-graphics/gles-module/gles-user-module/r8a7796_linux_gsx_binaries_gles3.tar.bz2
+meta-rcar-gen3/recipes-kernel/kernel-module-gles/kernel-module-gles/
+meta-rcar-gen3/recipes-kernel/kernel-module-uvcs/kernel-module-uvcs-drv/
+meta-rcar-gen3/recipes-multimedia/omx-module/omx-user-module/
